@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+click = "*"
+numpy = "*"
+torch = "==1.01"
+scipy = "*"
+torchvision = "==0.2.2"
+Pillow = "*"
+horovod = "*"
+advex-uar = {path = ".",editable = true}
+
+[requires]
+python_version = "3.7"
