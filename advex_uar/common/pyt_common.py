@@ -42,8 +42,11 @@ def get_cifar10_model(resnet_size):
         44: cifar10_resnet.resnet44,
         56: cifar10_resnet.resnet56,
         110: cifar10_resnet.resnet110,
+        'lp': cifar10_resnet.resnet20_lp
     }
+    print(resnet_size)
     model = size_to_model[resnet_size]()
+    print(model)
     return model
 
 def get_model(dataset, resnet_size, nb_classes):

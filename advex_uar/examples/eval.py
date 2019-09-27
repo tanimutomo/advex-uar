@@ -47,6 +47,7 @@ def run(**flag_kwargs):
     model_dataset = FLAGS.dataset
     if model_dataset == 'imagenet-c':
         model_dataset = 'imagenet'
+    print(FLAGS.resnet_size)
     model = get_model(model_dataset, FLAGS.resnet_size, nb_classes)
     ckpt = get_ckpt(FLAGS)
     model.load_state_dict(ckpt['model'])
@@ -83,7 +84,7 @@ def run(**flag_kwargs):
 @click.option("--dataset_path", default=None)
 
 # Model options
-@click.option("--resnet_size", default=50)
+@click.option("--resnet_size")
 @click.option("--class_downsample_factor", default=1, type=int)
 
 # checkpoint options; if --ckpt_path is None, assumes that ckpt is pulled from WandB
