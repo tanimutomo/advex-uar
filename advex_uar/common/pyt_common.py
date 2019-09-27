@@ -8,7 +8,7 @@ from torchvision import models
 
 from advex_uar.attacks import PGDAttack, ElasticAttack, FrankWolfeAttack,\
     JPEGAttack, GaborAttack, FogAttack, SnowAttack
-from advex_uar.common.models import cifar10_resnet
+from advex_uar.common.models import cifar10_resnet, cifar10_resnet_lp
 from advex_uar.logging.logger import Logger
 
 def init_logger(use_wandb, job_type, flags):
@@ -42,17 +42,21 @@ def get_cifar10_model(resnet_size):
         44: cifar10_resnet.resnet44,
         56: cifar10_resnet.resnet56,
         110: cifar10_resnet.resnet110,
-        'lp': cifar10_resnet.resnet20_lp
+        'lp': cifar10_resnet_lp.ResNetv2_20
     }
-    print(resnet_size)
-    model = size_to_model[resnet_size]()
-    print(model)
+    if resnet_size == 'lp':
+        model = size_to_model[resnet_size](10)
+    else:
+        model = size_to_model[resnet_size]()
+    print('load model in cifar10 in get_model')
     return model
 
 def get_model(dataset, resnet_size, nb_classes):
+    print('get model!')
     if dataset in ['imagenet', 'imagenet-c']:
         return get_imagenet_model(resnet_size, nb_classes)
     elif dataset in ['cifar-10', 'cifar-10-c']:
+        print('cifar10 in get_model')
         return get_cifar10_model(resnet_size)
 
 def _get_attack(dataset, attack, eps, n_iters, step_size, scale_each):
