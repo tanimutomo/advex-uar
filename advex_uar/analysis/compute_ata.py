@@ -28,6 +28,9 @@ def get_defense(log):
         std_acc
 
 def get_defenses(train_logs):
+    """Get [attack method, epsilon, n_iters, step_size, run_id, adv_train, standard acc] for each log. 
+    And then return list which contain all defence parameters.
+    """
     defenses = []
     for log in train_logs:
         defense = get_defense(log)
