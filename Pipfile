@@ -13,7 +13,8 @@ scipy = "*"
 torchvision = "==0.2.2"
 Pillow = "*"
 horovod = "*"
-advex-uar = {path = ".",editable = true}
+advex-uar = {editable = true,path = "."}
+wandb = "*"
 
 [requires]
 python_version = "3.7"
